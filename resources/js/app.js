@@ -1,6 +1,5 @@
-
-
 import Alpine from 'alpinejs';
+import 'flowbite';
 
 window.Alpine = Alpine;
 

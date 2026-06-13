@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ClassMember;
 use App\Models\ClassRoom;
 use Illuminate\Http\Request;
 use Str;
@@ -13,13 +14,21 @@ class ClassRoomController extends Controller
      */
     public function index()
     {
-        $classes = auth()->user()
-            ->classes()
-            ->latest()
-            ->get();
+        $classes = ClassRoom::where(
+        'teacher_id',
+        auth()->id()
+    )->get();
 
         return view('guru.classes.index', compact('classes'));
     }
+
+    public function members()
+{
+    return $this->hasMany(
+        ClassMember::class,
+        'class_id'
+    );
+}
 
     /**
      * Show the form for creating a new resource.

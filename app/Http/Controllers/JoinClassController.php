@@ -17,7 +17,10 @@ class JoinClassController extends Controller
             'class_code' => 'required'
         ]);
 
-        $class = ClassRoom::where('class_code')->first();
+        $class = ClassRoom::where(
+            'class_code',
+            $request->class_code
+        )->first();
 
         if(!$class){
             return back()
